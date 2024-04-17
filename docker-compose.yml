@@ -1,4 +1,3 @@
-version: '3.8'
 # Different containers that make up your application:
 services:
 
