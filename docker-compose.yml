@@ -1,0 +1,38 @@
+version: '3.8'
+# Different containers that make up your application:
+services:
+
+# Stats app service:
+  stats_app:
+  # This specifies how to build the Docker image for this service
+    build:
+    # context: indicates the path:
+      context: ./stats_app
+    container_name: ${STAT_CONTAINER}
+    restart: always
+    networks:
+      - quants-shared
+    env_file:
+      - .env
+    platform: linux/amd64 # Patch for M1 Mac
+    ports: 
+      - 8000:80
+
+  dl_app:
+    build:
+      context: ./dl_app
+    container_name: ${DL_CONTAINER}
+    restart: always
+    networks:
+      - quants-shared
+    env_file:
+      - .env
+    platform: linux/amd64 # Patch for M1 Mac
+    ports:
+      - 8001:80
+networks:
+# this is the name of the network:
+  quants-shared:
+  # this is a standard network driver for connecting conatainers on a single host:
+    driver: bridge
+    name: quants-shared-network

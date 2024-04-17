@@ -1,0 +1,5 @@
+1. Volume analysis : z number , volume volatility.
+2. Stock rolling volatility.
+3. etfs -- > portfolio
+4. BYOP -- > stats + LSTM Model.
+5. z_score for volume data.

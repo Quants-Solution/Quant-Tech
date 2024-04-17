@@ -1,0 +1,10 @@
+tensorflow==2.10.0
+transformers
+fmpsdk
+python-dotenv
+pandas
+typing 
+numpy
+python-multipart
+uvicorn
+fastapi
