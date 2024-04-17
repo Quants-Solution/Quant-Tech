@@ -71,6 +71,7 @@ async def research(request: Request, symbol: Optional[str] = Form(...)):
        
         
         symbols = [i for x in symbols for i in x.replace(" ", "").split(",")]
+        symbols = [symbol.upper() if not symbol.isupper() else symbol for symbol in symbols]
         print("------------------------------------------")
 
         response = requests.post("http://dl-app-container/sentiment",json={"data":symbols})
@@ -174,7 +175,7 @@ async def investments(request: Request, symbol:Optional[str] = None):
             raise ValueError("Symbol must be a string or a list of strings")
         
         symbols = [i for x in symbols for i in x.replace(" ", "").split(",")]
-
+        symbols = [symbol.upper() if not symbol.isupper() else symbol for symbol in symbols]
         stocks_vol, traces, mc_stats, es, volume_prof = byop.make_your_portfolio(symbols)
         layout = go.Layout(title='Time Series Data',
                    xaxis=dict(title='Date'),
