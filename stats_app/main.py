@@ -22,6 +22,10 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 async def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
+@app.get("/meet_the_team")
+async def team(request: Request):
+    return templates.TemplateResponse("meet_the_team.html", {"request" :request})
+
 
 @app.get("/solutions")
 async def solutions(request: Request):
