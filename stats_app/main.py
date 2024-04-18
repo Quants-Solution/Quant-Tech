@@ -144,18 +144,40 @@ async def research(request: Request, symbol: Optional[str] = Form(...)):
 @app.get("/research/yields")
 async def yields(request: Request, selection: datetime = None):
     yields_data = treasuries.yields_data()
-    print(f"----------------")
-    print(f"{selection}")
+    datetime_string = ["2000-11-30", "2007-02-28"]
+    crash_2000 = yields_data.loc[[datetime_string[0]]].T
+    fig_2000 = px.line(crash_2000, x=crash_2000.index, y=datetime_string[0])
+    fig_2000_html = fig_2000.to_html(full_html=False)
+
+    crash_2007 = yields_data.loc[[datetime_string[1]]].T
+    fig_2007 = px.line(crash_2007, x=crash_2007.index, y=datetime_string[1])
+    fig_2007_html = fig_2007.to_html(full_html=False)
+  
     if selection is None:
-        yield_html = ""
+        current_data = yields_data.iloc[[-1]].T
+        [y] = current_data.columns
+        fig_current = px.line(current_data, x=current_data.index, y=y)
+        yield_html = fig_current.to_html(full_html=False)
+        
     else:
         # selection = selection.strftime("%Y-%m-%d")
         data = yields_data.loc[[selection]].T
+        print(type(selection))
+         
+
         fig = px.line(data, x=data.index, y=selection)
+        
+
         yield_html = fig.to_html(full_html=False)
+        
     return templates.TemplateResponse(
         "yields.html",
-        {"request": request, "dates": yields_data.index, "yields_graph": yield_html},
+        {"request": request,
+        "dates": yields_data.index, 
+        "yields_graph": yield_html,
+        "crash_2000": fig_2000_html,
+        "crash_2007":fig_2007_html
+        },
     )
 
 

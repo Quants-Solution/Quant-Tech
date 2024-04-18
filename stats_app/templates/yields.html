@@ -23,8 +23,25 @@
                 <input type="submit" value="Submit">
             </form>
         </div>
-        <div id="chart-container">
-            {{ yields_graph | safe }}
+        <div class="row justify-content-center mx-2 py-2">
+            <p class="border text-center">Current Available Yield Curve</p>
+            <div id="chart-container">
+                {{ yields_graph | safe }}
+            </div>
+        </div>
+        <div class="row justify-content-center mx-2 py-2">
+            <div class="col-md-5 justify-content-center" id="chart-container">
+                <p>Yield Curve Inversion before the 2000 crisis</p>
+                <div>
+                    {{ crash_2000 | safe }}
+                </div>
+            </div>
+            <div class="col-md-5 justify-content-center" id="chart-container">
+                <p>Yield Curve Inversion before the 07-08 housing crisis</p>
+                <div>
+                    {{ crash_2007 | safe }}
+                </div>
+            </div>
         </div>
     </div>
 </body>

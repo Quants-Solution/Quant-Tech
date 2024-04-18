@@ -17,14 +17,28 @@
                 <h4>Sector Strength</h4>
             </div>
         </div>
-        <div class ="col-md-5 p-3" id="plotly_chart">
-            <h6 class="border rounded-3 text-center p-1 shadow-sm">Bench Mark Sector <br>
+        <div class ="col-md-5 p-2 justify-content-center" id="plotly_chart">
+            <h6 class="border rounded-3 text-center p-3 shadow-sm">Bench Mark Sector <br>
                 <em>Equally weighted all sectors</em></h6>
-            {{ plot1 | safe }}
+                <p><b>Outperforming Sectors Graph:</b> This graph illustrates sectors within the market that are performing better than the equally weighted sector index.
+                    Imagine the market as a race, where different sectors are like runners.
+                    The sectors shown here are leading the race, moving ahead faster compared to the overall market.
+                    They could be companies or industries that are experiencing higher growth rates or making bigger profits than the average.</b></p>
+            <div>
+                {{ plot1 | safe }}
+            </div>
         </div>
-        <div class="col-md-5 p-3" id="plotly_chart1">
+        <div class="col-md-5 p-2 justify-content-center" id="plotly_chart1">
             <h6 class="border rounded-3 text-center p-3 shadow-sm">Bench Mark vs all individual sectors</h6>
-            {{ plot2 | safe }}
+            <p><b>Underperforming Sectors Graph:</b>In contrast to the first graph, this one displays sectors that are trailing behind the equally weighted sector index.
+                Think of it as runners in a race who are falling behind the rest.
+                These sectors are not performing as well as the overall market.
+                They might be facing challenges or experiencing slower growth compared to other sectors.
+                It's like they're struggling to keep up with the pace set by the rest of the market.
+            </p>
+            <div>
+                {{ plot2 | safe }}
+            </div>
         </div>
     </div>
 
@@ -59,12 +73,25 @@
 
             <div class="col-md-6" id="financial_health_chart">
                 <h4 class="border rounded-3 text-center p-2"><b>Financial Health</b></h4>
+                <div class="m-2 p-2 border">
+                    <p>
+                        Fundamental analysis evaluates a company's health by examining its financial statements and qualitative factors like business model and management team.
+                        It helps investors gauge a company's long-term potential and value by understanding its core aspects, akin to inspecting the roots of a tree to assess its strength and growth prospects.
+                    </p>
+                </div>
                 <div id="financial_health_graph">
                     {{ financial_health | safe }}
                 </div>
             </div>
             <div class="col-md-6" id="valuation_chart">
                 <h4 class="border rounded-3 text-center p-2"><b>Valuation</b></h4>
+                <div class="m-2 p-2 border">
+                    <p>
+                        Valuation analysis determines the value of a company by assessing its earnings, assets, and future prospects.
+                        It helps investors decide if a company's stock is priced fairly or if it's a good deal based on its intrinsic value and potential for growth,
+                        akin to deciding if a toy is worth buying by considering its features and enjoyment.
+                    </p>
+                </div>
                 <div id="valuation_graph">
                     {{ valuation | safe }}
                 </div>
@@ -74,12 +101,24 @@
         <div class="row bg-light my-5 mx-2 align-items-center justify-content-center p-4">
             <div class="col-md-5" id="profitability_chart">
                 <h4 class="border rounded-3 text-center p-2"><b>Profitability</b></h4>
+                <div class ="m-2 p-2 border">
+                    <p>These metrics shows if revenue is increasing as a result of inventory being sold.
+                        If the line falls, it means that revenue is decreasing and inventory if increasing since the product turnover is decreasing.
+                    </p>
+                </div>
                 <div id="revInv_graph">
                     {{ RevByInv | safe }}
                 </div>
             </div>
             <div class="col-md-5" id="sentiment_chart">
                 <h4 class="border rounded-3 text-center p-2"><b>Sentiment</b></h4>
+                <div class ="m-2 p-2 border">
+                    <p>
+                        Human emotions if at an extreme cause a significant effect in the movement of markets.
+                        Our metric measures the sentimnent for 5 - -5.
+                        The evaluationis based on 5 recently released news about the company.
+                    </p>
+                </div>
                 <div id="sentiment">
                     {{ sentiment | safe }}
                 </div>
